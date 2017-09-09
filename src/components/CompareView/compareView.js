@@ -44,7 +44,6 @@ class CompareView extends Component {
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.value;
     const name = target.name;
 
     const array = this.state.searchText;
