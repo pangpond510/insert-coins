@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import LoginView from '../LoginView';
 import MainView from '../MainView';

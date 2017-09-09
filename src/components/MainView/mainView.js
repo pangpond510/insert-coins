@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
+import profilePic from '../../img/user-icon.jpg'
 
 const Background = styled.div`
   width: 100%;
@@ -17,10 +17,10 @@ const Seperator = styled.hr`
   margin: 10px 0px;
 `
 
-const Pic = styled.div`
-  width: 70px;
-  height: 70px;
-  background: black;
+const Pic = styled.img`
+  width: 80px;
+  height: 80px;
+  border: 2px solid darkgrey;
 `
 
 const TextBox = styled.div`
@@ -42,7 +42,7 @@ const Button = styled.div`
 const MainView = (props) =>
   <Background>
     <UserSection>
-      <Pic />
+      <Pic src={profilePic} alt="Profile" />
       <TextBox>
         <h3>you don't submit for this month</h3>
         <h4>username</h4>
