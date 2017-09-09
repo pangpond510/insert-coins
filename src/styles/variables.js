@@ -44,7 +44,8 @@ export const COLOR = {
   valid: "#6ece1a",
   green2: "#32b7a3",
   green3: "#7ed321",
-  bgFinalAmount: "rgba(241, 173, 70, 0.2)"
+  bgFinalAmount: "rgba(241, 173, 70, 0.2)",
+  error: "rgb(255,0,0)"
 };
 
 export const SHADOW = {

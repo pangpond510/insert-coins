@@ -1,60 +1,40 @@
-import React from 'react';
-import styled from 'styled-components';
-import profilePic from '../../img/user-icon.jpg'
+import React from "react";
+import styled from "styled-components";
+import { Row, Icon } from "antd";
+import Text from "../Text";
+import Button from "../Button";
 
-const Background = styled.div`
-  width: 100%;
-  height: 100vh;
-  background: lightgray;
-  padding: 10px 10px 0px;
-`
+import { COLOR } from "../../styles/variables";
 
-const UserSection = styled.div`
-  display: flex;
-`
+const UserSection = styled(Row)`
+  background-color: rgb(64, 64, 64);
+  padding: 10px 0px;
+`;
 
-const Seperator = styled.hr`
-  margin: 10px 0px;
-`
+const ButtonRow = styled(Row)`padding: 15px 0px;`;
+const MainButton = styled(Button)`width: 225px;`;
 
-const Pic = styled.img`
-  width: 80px;
-  height: 80px;
-  border: 2px solid darkgrey;
-`
-
-const TextBox = styled.div`
-  margin-left: 20px;
-  text-align: center;
-`
-
-const Button = styled.div`
-  width: 70%;
-  height 50px;
-  margin: 20px auto;
-  line-height: 50px;
-  text-align: center;
-  background: cyan;
-  border-radius: 25px;
-  box-shadow: 5px 5px 2px #888888;
-`
-
-const MainView = (props) =>
-  <Background>
-    <UserSection>
-      <Pic src={profilePic} alt="Profile" />
-      <TextBox>
-        <h3>you don't submit for this month</h3>
-        <h4>username</h4>
-      </TextBox>
+const MainView = props => (
+  <div>
+    <UserSection type="flex" align="center">
+      <Icon type="user" style={{ fontSize: 70, color: "white" }} />
+      <Text text="username" size="30px" color={COLOR.white} bold style={{ lineHeight: "70px" }} />
     </UserSection>
-    <Seperator />
-    <div>
-      <Button onClick={props.onFormClick}>FORM</Button>
-      <Button onClick={props.onInfoClick}>DIESEL INFOMATION</Button>
-      <Button onClick={props.onGroupClick}>GROUP</Button>
-      <Button onClick={props.onMapClick}>OVERVIEW</Button>
-    </div>
-  </Background>
-    
+    <br />
+    <br />
+    <ButtonRow>
+      <MainButton label="FORM" icon="save" onClick={props.onFormClick} />
+    </ButtonRow>
+    <ButtonRow>
+      <MainButton label="DIESEL INFOMATION" icon="file-text" onClick={props.onInfoClick} />
+    </ButtonRow>
+    <ButtonRow>
+      <MainButton label="GROUP" icon="team" onClick={props.onGroupClick} />
+    </ButtonRow>
+    <ButtonRow>
+      <MainButton label="OVERVIEW" onClick={props.onMapClick} />
+    </ButtonRow>
+  </div>
+);
+
 export default MainView;

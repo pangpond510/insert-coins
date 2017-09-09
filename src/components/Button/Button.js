@@ -1,4 +1,5 @@
 import React from "react";
+import { Icon } from "antd";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { lighten } from "polished";
@@ -86,9 +87,10 @@ const defaultProps = {
   size: "16"
 };
 
-const Button = ({ type, size, disabled, onClick, label }) => {
+const Button = ({ type, size, disabled, onClick, label, icon }) => {
   return (
     <MyButton type={type} size={size} onClick={onClick} disabled={disabled}>
+      {icon && <Icon type={icon} style={{ fontSize: { size } }} />}
       {label}
     </MyButton>
   );
