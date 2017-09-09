@@ -164,11 +164,11 @@ class InfoView extends Component {
           </MobileCard>
         </Row>
         <Row type="flex" justify="center" style={{ padding: "10px 5px 0px 5px" }}>
-          <MobileCard style={{ width: 300 }}>
+          <MobileCard style={{ width: 300 }} bodyStyle={{ padding: "20px 10px" }}>
             <AvgTable data={this.state.data} />
           </MobileCard>
         </Row>
-        <Row type="flex" justify="center" style={{ padding: "10px 5px 0px 5px" }}>
+        <Row type="flex" justify="center" style={{ padding: "10px 5px 20px 5px" }}>
           <Button type="secondary" label="Back" onClick={onBackClick} />
         </Row>
       </div>

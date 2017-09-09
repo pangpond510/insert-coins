@@ -1,52 +1,50 @@
-import React from 'react';
-import styled from 'styled-components';
-import boyDark from '../../img/boy-dark.png'
-import boyLight from '../../img/boy.png'
+import React from "react";
+import styled from "styled-components";
+import { Progress, Row, Col, Icon } from "antd";
+import Text from "../Text";
+import Button from "../Button";
 
-const Background = styled.div`
-  width: 100%;
-  height: 100vh;
-  padding: 20px;
-  background: lightgray;
-`
-const Header = styled.div`
-  display: flex;
+import { COLOR } from "../../styles/variables";
+
+const Background = styled.div`padding: 20px;`;
+
+const Header = styled(Row)`
+  background-color: white;
+  padding: 20px 10px 20px 20px;
   margin-bottom: 20px;
-`
+`;
 
-const Body = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`
+const Body = styled.div`text-align: center;`;
 
-const ProgressBar = styled.progress`
-  width: 60%;
-  margin-right: 20px;
-`
-
-const Pic = styled.img`
-  width: 27px;
-  height: 40px;
-  margin: 10px;
-  cursor: pointer;
-`
-
-const FormView = ({submitted, members, onBackClick}) =>
-  <Background>
+const FormView = ({ submitted, members, onBackClick }) => (
+  <div>
     <Header>
-      <ProgressBar value={submitted} max={members} />
-      <p>{`Members: ${submitted}/${members}`}</p>
+      <Col xs={8}>
+        <Progress type="circle" width="100" percent={submitted / members * 100} />
+      </Col>
+      <Col xs={16}>
+        <Text
+          text={`Members : ${submitted}/${members}`}
+          size="20px"
+          color={COLOR.primaryDark}
+          style={{ lineHeight: "90px" }}
+        />
+      </Col>
     </Header>
-    <Body>
-      {
-        [...Array(members)].map((x, i) => {
-          if(i < submitted) return <Pic src={boyLight} alt="submitted" />
-          else return <Pic src={boyDark} alt="not submitted" />
-        })
-      }
-    </Body> 
-    <br />
-    <button onClick={onBackClick}>back</button>
-  </Background>
+    <Background>
+      <Body>
+        {[...Array(members)].map((x, i) => {
+          if (i < submitted)
+            return <Icon type="smile" style={{ fontSize: 50, padding: 5, color: COLOR.twitter }} />;
+          else return <Icon type="frown-o" style={{ fontSize: 50, padding: 5 }} />;
+        })}
+      </Body>
+      <br />
+      <Row type="flex" justify="center" style={{ padding: "10px 5px 20px 5px" }}>
+        <Button type="secondary" label="Back" onClick={onBackClick} />
+      </Row>
+    </Background>
+  </div>
+);
 
 export default FormView;
