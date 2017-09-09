@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "./components/Header";
 import MobileView from "./components/MobileView";
 import Overview from "./components/Overview";
+import Parts from "./components/Parts";
 import "./App.css";
 
 class App extends Component {
@@ -9,7 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       onMobile: false,
-      current: "Overview"
+      current: "Parts"
     };
     this.updateDevice = this.updateDevice.bind(this);
     this.updateTopic = this.updateTopic.bind(this);
@@ -76,6 +77,11 @@ class App extends Component {
                   highPrice="32"
                   highPlace="somewhere"
                 />
+              </div>
+            )}
+            {this.state.current === "Parts" && (
+              <div>
+                <Parts avgPrice="30" avgVolume="32" />
               </div>
             )}
           </div>
