@@ -7,10 +7,10 @@ import Button from "../Button";
 import { COLOR } from "../../styles/variables";
 
 const TAB = {
-  OVERVIEW: 'overview',
-  INDIVIDUAL: 'individual',
-  COMPARE: 'compare',
-}
+  OVERVIEW: "overview",
+  INDIVIDUAL: "individual",
+  COMPARE: "compare"
+};
 
 const HeaderView = styled.div`
   background-color: white;
@@ -37,13 +37,13 @@ class Header extends Component {
   render() {
     return (
       <HeaderView>
-        <Row>
-          <Col span={8}>
+        <Row type="flex" align="middle">
+          <Col span={8} style={{ textAlign: "left" }}>
             <Text text="Insert Coins" size="50px" color={COLOR.primaryDark} bold />
           </Col>
-          <Col span={4} offset={8}>
+          <Col span={6} offset={6} style={{ textAlign: "right" }}>
             <Icon type="user" style={{ fontSize: 20 }} />
-            <Text text={`Admin`} size="20px" color={COLOR.primaryDark} bold />
+            <Text text={`Project Developer`} size="20px" color={COLOR.primaryDark} bold />
           </Col>
           <Col span={4}>
             <Button type="primary" label="Log out" />
