@@ -162,7 +162,7 @@ class FormView extends Component {
           </Col>
           <Col xs={12}>
             <Row type="flex" justify="center">
-              <Button label="Back" onClick={this.props.onBackClick} />
+              <Button type="secondary" label="Back" onClick={this.props.onBackClick} />
             </Row>
           </Col>
         </Section>

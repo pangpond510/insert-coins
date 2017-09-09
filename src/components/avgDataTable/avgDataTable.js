@@ -1,48 +1,26 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import { Table } from "antd";
 
-const Table = styled.table `
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-`;
-
-const Head = styled.th `
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-`;
-
-const Cell = styled.td `
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-`;
-
-const Row = styled.tr `
-  :nth-child(even) {
-    background-color: #dddddd;
+const columns = [
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name"
+  },
+  {
+    title: "Price",
+    dataIndex: "price",
+    key: "price"
   }
-`;
+];
 
-
-const AvgDataTable = ({data}) =>
-  <Table>
-    <Row>
-      <Head>Name</Head>
-      <Head>Price</Head>
-    </Row>
-    {
-      Object.keys(data).map((key)=>{
-        const info = data[key];
-        return (
-          <Row>
-            <Cell>{key}</Cell>
-            <Cell>{Math.round(info.price * 100) / 100}</Cell>
-          </Row>
-        );
-      })
-    }
-  </Table>
+const AvgDataTable = ({ data }) => {
+  console.log(data);
+  const TableData = Object.keys(data).map((e, i) => {
+    return { key: i, name: e, price: data[e].price };
+  });
+  console.log(TableData);
+  return <Table columns={columns} dataSource={TableData} pagination={false} />;
+};
 
 export default AvgDataTable;

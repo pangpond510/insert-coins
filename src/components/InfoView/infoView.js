@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 import { Row, Card } from "antd";
 import Text from "../Text";
-import AvgTable from "../avgDataTable"
+import AvgTable from "../avgDataTable";
+import Button from "../Button";
 
 import { COLOR } from "../../styles/variables";
 
@@ -52,58 +53,61 @@ class InfoView extends Component {
       minName: "",
       avg: 0,
       count: 0,
-      apiGet: (filter) => {
+      apiGet: filter => {
         // console.log(filter);
         const api = `http://localhost:3000/api/DieselData?filter=${JSON.stringify(filter)}`;
         return fetch(api, {
-          method: 'get'
+          method: "get"
         });
       }
     };
   }
 
   componentWillMount() {
-    const filter = {where: {month: new Date().getMonth()+1}}
-    this.state.apiGet(filter)
-      .then((res) => res.json())
-      .then((res) => {
+    const filter = { where: { month: new Date().getMonth() + 1 } };
+    this.state
+      .apiGet(filter)
+      .then(res => res.json())
+      .then(res => {
         let avg = {};
-        for(let i in res) {
-          if(avg[res[i].island] === undefined) {
+        for (let i in res) {
+          if (avg[res[i].island] === undefined) {
             avg[res[i].island] = {
               price: res[i].price,
               count: 1
-            }
-          }
-          else {
-            const avgPrice = (avg[res[i].island].price*avg[res[i].island].count + res[i].price)/(avg[res[i].island].count+1);
+            };
+          } else {
+            const avgPrice =
+              (avg[res[i].island].price * avg[res[i].island].count + res[i].price) /
+              (avg[res[i].island].count + 1);
             avg[res[i].island].price = avgPrice;
             avg[res[i].island].count += 1;
           }
         }
         let min = -1;
-        let sum = 0 ;
+        let sum = 0;
         let count = 0;
         let name = "";
-        Object.keys(avg).forEach((island)=>{
-          if(avg[island].price < min || min === -1){
+        Object.keys(avg).forEach(island => {
+          if (avg[island].price < min || min === -1) {
             min = avg[island].price;
             name = island;
           }
           sum += avg[island].price * avg[island].count;
           count += avg[island].count;
-        })
+        });
         this.setState({
           data: avg,
           minPrice: min,
           minName: name,
-          avg: sum/count,
+          avg: sum / count,
           count: count
-        })
+        });
         console.log(this.state);
       })
-      .catch((err) => {console.log(err);});
-
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -116,7 +120,7 @@ class InfoView extends Component {
               <Text text="Average Price" size="27px" color={COLOR.green2} bold />
               <br />
               <Text
-                text={`at ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`}
+                text={`at ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
                 size="14px"
                 color={COLOR.lightGrey4}
               />
@@ -124,7 +128,12 @@ class InfoView extends Component {
             <Card.Grid style={content1}>
               <Text text="Diesel price in thailand" size="12px" color={COLOR.primaryDark} />
               <br />
-              <Text text={`${Math.round(this.state.avg * 100) / 100} Baht/Litr`} size="23px" color={COLOR.peach} bold />
+              <Text
+                text={`${Math.round(this.state.avg * 100) / 100} Baht/Litr`}
+                size="23px"
+                color={COLOR.peach}
+                bold
+              />
             </Card.Grid>
           </MobileCard>
         </Row>
@@ -134,7 +143,7 @@ class InfoView extends Component {
               <Text text="Lowest Price" size="27px" color={COLOR.facebook} bold />
               <br />
               <Text
-                text={`at ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`}
+                text={`at ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
                 size="14px"
                 color={COLOR.lightGrey4}
               />
@@ -142,17 +151,26 @@ class InfoView extends Component {
             <Card.Grid style={content2}>
               <Text text="Lowest price starts from" size="12px" color={COLOR.primaryDark} />
               <br />
-              <Text text={`${Math.round(this.state.minPrice * 100) / 100} Baht/Litr`} size="23px" color={COLOR.peach} bold />
+              <Text
+                text={`${Math.round(this.state.minPrice * 100) / 100} Baht/Litr`}
+                size="23px"
+                color={COLOR.peach}
+                bold
+              />
               <br />
               <Text text={`at ${this.state.minName}`} size="14px" color={COLOR.lightGrey4} />
               <br />
             </Card.Grid>
           </MobileCard>
         </Row>
-        <Row type="flex" justify="center" style={{ padding: "20px 20px 20px 20px" }}>
-          <AvgTable data={this.state.data} />
+        <Row type="flex" justify="center" style={{ padding: "10px 5px 0px 5px" }}>
+          <MobileCard style={{ width: 300 }}>
+            <AvgTable data={this.state.data} />
+          </MobileCard>
         </Row>
-        <button onClick={onBackClick}>back</button>
+        <Row type="flex" justify="center" style={{ padding: "10px 5px 0px 5px" }}>
+          <Button type="secondary" label="Back" onClick={onBackClick} />
+        </Row>
       </div>
     );
   }
