@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
-import { FONT } from "../../styles/variables";
-
 const T = styled.text`
   font-size: ${({ size }) => size};
   color: ${({ color }) => color};

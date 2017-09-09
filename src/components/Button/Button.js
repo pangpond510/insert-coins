@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import cx from "classnames";
 import styled, { css } from "styled-components";
-import { darken, lighten } from "polished";
+import { lighten } from "polished";
 
 import { COLOR } from "../../styles/variables";
 

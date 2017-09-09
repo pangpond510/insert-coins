@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Row, Col, Card } from "antd";
+import { Row, Card } from "antd";
 import Text from "../Text";
 
 import { COLOR } from "../../styles/variables";
