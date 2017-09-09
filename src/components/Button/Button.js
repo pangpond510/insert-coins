@@ -58,8 +58,11 @@ const getBorder = type => {
 
 const MyButton = styled.button`
   color: #fff;
-  font-size: 16px;
-  font-weight: 400;
+  ${({ size }) => {
+    return css`
+      font-size: ${size}px;
+    `;
+  }} font-weight: 400;
   letter-spacing: 0.05em;
 
   ${({ type }) => getBGStyle(type)} ${({ type }) => getBorder(type)} padding: 0.6em 1.4em;
@@ -79,12 +82,13 @@ const propTypes = {
 const defaultProps = {
   type: "primary",
   onClick: () => {},
-  label: "นี่คือปุ่ม"
+  label: "นี่คือปุ่ม",
+  size: "16"
 };
 
-const Button = ({ type, disabled, onClick, label }) => {
+const Button = ({ type, size, disabled, onClick, label }) => {
   return (
-    <MyButton type={type} onClick={onClick} disabled={disabled}>
+    <MyButton type={type} size={size} onClick={onClick} disabled={disabled}>
       {label}
     </MyButton>
   );
