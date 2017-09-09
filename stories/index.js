@@ -4,6 +4,7 @@ import { action } from "@storybook/addon-actions";
 
 import DieselForm from "../src/components/dieselForm"
 import RawDataTable from "../src/components/rawDataTable"
+import AvgDataTable from "../src/components/avgDataTable"
 import Button from "../src/components/Button";
 import "antd/dist/antd.css";
 
@@ -17,3 +18,4 @@ storiesOf("Form", module)
 
 storiesOf("Table", module)
   .add("raw data", () => <RawDataTable island={"island"} />)
+  .add("avg data", () => <AvgDataTable />)
