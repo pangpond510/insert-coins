@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Row, Col, Card } from "antd";
+import { Row, Col, Card, Input, Icon } from "antd";
 
 import Text from "../Text";
 
@@ -22,19 +22,7 @@ const SearchSection = styled.div`
   width: fit-content;
   margin: 20px auto 40px;
   display: flex;
-`
-
-const Input = styled.input`
-  padding: 0px 10px;
-  width: 65vw;
-  font-size: 30px;
-  margin-right: 20px;
-`;
-
-const Button = styled.button`
-  height: 50px;
-  font-size: 20px;
-  padding: 0px 30px;
+  vertical-align: middle;
 `;
 
 const InfoCard = styled(Card)`
@@ -49,7 +37,6 @@ const header = {
   textAlign: "center",
   verticalAlign: "middle"
 };
-
 
 const content1 = {
   width: "60%",
@@ -73,11 +60,11 @@ class IndivView extends Component {
       avgPrice: 0,
       totalVolumn: 0,
       data: [],
-      apiGet: (filter) => {
+      apiGet: filter => {
         // console.log(filter);
         const api = `http://localhost:3000/api/DieselData?filter=${JSON.stringify(filter)}`;
         return fetch(api, {
-          method: 'get'
+          method: "get"
         });
       }
     };
@@ -92,7 +79,7 @@ class IndivView extends Component {
     const name = target.name;
 
     this.setState({
-      [name]: value,
+      [name]: value
     });
   }
 
@@ -101,81 +88,118 @@ class IndivView extends Component {
       isSearch: true,
       island: this.state.searchText
     });
-    
+
     const filter = {
-      where:{island:this.state.searchText}
+      where: { island: this.state.searchText }
     };
 
-    this.state.apiGet(filter)
-      .then((res) => res.json())
-      .then((res) => {
+    this.state
+      .apiGet(filter)
+      .then(res => res.json())
+      .then(res => {
         let sumPrice = 0;
         let sumVolumn = 0;
         let count = 0;
-        for(let i in res) {
+        for (let i in res) {
           sumPrice += res[i].price;
           sumVolumn += res[i].amount;
           count++;
         }
         this.setState({
           data: res,
-          avgPrice: isNaN(sumPrice/count) ? 0 : sumPrice/count,
-          totalVolumn: sumVolumn,
-        })  
+          avgPrice: isNaN(sumPrice / count) ? 0 : sumPrice / count,
+          totalVolumn: sumVolumn
+        });
       })
-      .catch((err) => {console.log(err);});
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
     return (
       <Container>
         <SearchSection>
-          <Input name="searchText" value={this.state.searchText} onChange={this.handleInputChange} placeholder={"island name..."} />
-          <Button onClick={this.handleSearchClick}>SEARCH</Button>
+          <Input
+            name="searchText"
+            value={this.state.searchText}
+            onChange={this.handleInputChange}
+            onPressEnter={this.state.searchText && this.handleSearchClick}
+            style={{ width: "70vw", height: 50, fontSize: 25 }}
+            placeholder={"island name..."}
+          />
+          <Icon
+            type="search"
+            onClick={this.state.searchText && this.handleSearchClick}
+            style={{
+              paddingLeft: 10,
+              fontSize: 40,
+              color: COLOR.twitter,
+              cursor: "pointer"
+            }}
+          />
         </SearchSection>
-        {
-          this.state.isSearch && 
+        {this.state.isSearch && (
           <div>
             <Row>
               <Col span={8} offset={1}>
-                <Row type="flex" justify="center" style={{ marginBottom: "20px"}}>
-                  <InfoCard style={{ width: "100%" }}>
+                <Row type="flex" justify="center" style={{ marginBottom: "20px" }}>
+                  <InfoCard style={{ width: "350" }}>
                     <Card.Grid style={header}>
                       <Text text="Average Price" size="24px" color={COLOR.green2} bold />
                       <br />
                       <Text
-                        text={`at ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`}
+                        text={`at ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
                         size="14px"
                         color={COLOR.lightGrey4}
                       />
                     </Card.Grid>
                     <Card.Grid style={content1}>
-                      <Text text={`Diesel price in ${this.state.island}`} size="12px" color={COLOR.primaryDark} />
+                      <Text
+                        text={`Diesel price in ${this.state.island}`}
+                        size="12px"
+                        color={COLOR.primaryDark}
+                      />
                       <br />
-                      <Text text={`${Math.round(this.state.avgPrice * 100) / 100} Baht/Litr`} size="20px" color={COLOR.peach} bold />
+                      <Text
+                        text={`${Math.round(this.state.avgPrice * 100) / 100} Baht/Litr`}
+                        size="20px"
+                        color={COLOR.peach}
+                        bold
+                      />
                     </Card.Grid>
                   </InfoCard>
                 </Row>
                 <Row type="flex" justify="center">
-                  <InfoCard style={{ width: "100%" }}>
+                  <InfoCard style={{ width: "350" }}>
                     <Card.Grid style={header}>
                       <Text text="Total Volume" size="24px" color={COLOR.green2} bold />
                       <br />
                       <Text
-                        text={`at ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`}
+                        text={`at ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
                         size="14px"
                         color={COLOR.lightGrey4}
                       />
                     </Card.Grid>
                     <Card.Grid style={content1}>
-                      <Text text={`Diesel volume in ${this.state.island}`} size="12px" color={COLOR.primaryDark} />
+                      <Text
+                        text={`Diesel volume in ${this.state.island}`}
+                        size="12px"
+                        color={COLOR.primaryDark}
+                      />
                       <br />
-                      <Text text={`${Math.round(this.state.totalVolumn * 100) / 100} Litr/Month`} size="20px" color={COLOR.peach} bold />
+                      <Text
+                        text={`${Math.round(this.state.totalVolumn * 100) / 100} Litr/Month`}
+                        size="20px"
+                        color={COLOR.peach}
+                        bold
+                      />
                     </Card.Grid>
                   </InfoCard>
                 </Row>
               </Col>
               <Col span={13} offset={1}>
+                <Text text={this.state.island} size="40px" color={COLOR.primaryDark} />
                 <Row justify="center">
                   <RawDataTable data={this.state.data} />
                 </Row>
@@ -190,7 +214,7 @@ class IndivView extends Component {
               <img src={Map} alt="Map" width="45%" height="auto" />
             </Row>
           </div>
-        }
+        )}
       </Container>
     );
   }
