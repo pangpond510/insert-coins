@@ -1,20 +1,19 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import Header from "../src/components/Header";
+
+import DieselForm from "../src/components/dieselForm"
+import RawDataTable from "../src/components/rawDataTable"
 import Button from "../src/components/Button";
 import "antd/dist/antd.css";
+
+
 storiesOf("Button", module)
   .add("with text", () => <button onClick={action("clicked")}>Hello Button</button>)
-  .add("with some emoji", () => <button onClick={action("clicked")}>😀 😎 👍 💯</button>)
-  .add("Button", () => {
-    return (
-      <div>
-        <Button />
-        <Button type="secondary" />
-        <Button type="danger" />
-      </div>
-    );
-  });
+  .add("with some emoji", () => <button onClick={action("clicked")}>😀 😎 👍 💯</button>);
+  
+storiesOf("Form", module)
+  .add("diesel price form", () => <DieselForm />)
 
-storiesOf("Header", module).add("Header in Desktop", () => <Header />);
+storiesOf("Table", module)
+  .add("raw data", () => <RawDataTable island={"island"} />)
