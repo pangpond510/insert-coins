@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import Footer from "./components/Footer";
+import Header from "./components/Header";
 import MobileView from "./components/MobileView";
+import Overview from "./components/Overview";
 import "./App.css";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      onMobile: false
+      onMobile: false,
+      current: "Overview"
     };
     this.updateDevice = this.updateDevice.bind(this);
+    this.updateTopic = this.updateTopic.bind(this);
   }
   componentWillMount() {
     this.updateDevice();
@@ -40,6 +43,12 @@ class App extends Component {
     }
   }
 
+  updateTopic(topic) {
+    this.setState({
+      current: topic
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -53,6 +62,22 @@ class App extends Component {
         {this.state.onMobile && (
           <div>
             <MobileView />
+          </div>
+        )}
+        {!this.state.onMobile && (
+          <div>
+            <Header onTopicChange={this.updateTopic} />
+            {this.state.current === "Overview" && (
+              <div>
+                <Overview
+                  avgPrice="30"
+                  lowPrice="28"
+                  lowPlace="somewhere"
+                  highPrice="32"
+                  highPlace="somewhere"
+                />
+              </div>
+            )}
           </div>
         )}
       </div>

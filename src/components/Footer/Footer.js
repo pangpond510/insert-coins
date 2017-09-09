@@ -3,28 +3,28 @@ import styled from "styled-components";
 import { Row, Col } from "antd";
 import Button from "../Button";
 
-const HeaderView = styled.div`padding: 10px;`;
+const FooterView = styled.div`padding: 10px;`;
 const MobileButton = styled(Button)`
   font-size: 12px important!;
   font-weight: 200 important!;
 `;
 
-const HeaderDefaultProps = {};
+const FooterDefaultProps = {};
 
-class Header extends Component {
+class Footer extends Component {
   render() {
     return (
-      <HeaderView>
+      <FooterView>
         <Row>
           <Col>
             <MobileButton type="primary" label="TypeForm" />
           </Col>
         </Row>
-      </HeaderView>
+      </FooterView>
     );
   }
 }
 
-Header.defaultProps = HeaderDefaultProps;
+Footer.defaultProps = FooterDefaultProps;
 
-export default Header;
+export default Footer;
