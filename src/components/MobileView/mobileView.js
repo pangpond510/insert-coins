@@ -4,6 +4,7 @@ import LoginView from '../LoginView';
 import MainView from '../MainView';
 import FormView from '../FormView';
 import InfoView from '../InfoView';
+import GroupView from '../GroupView';
 
 const PAGE = {
   LOGIN: 1,
@@ -25,6 +26,7 @@ class DieselForm extends Component {
     this.onLoginClick = this.onLoginClick.bind(this);
     this.onFormClick = this.onFormClick.bind(this);
     this.onInfoClick = this.onInfoClick.bind(this);
+    this.onGroupClick = this.onGroupClick.bind(this);
     this.onBackClick = this.onBackClick.bind(this);
   }
 
@@ -47,6 +49,12 @@ class DieselForm extends Component {
     })
   }
 
+  onGroupClick() {
+    this.setState({
+      page: PAGE.GROUP
+    })
+  }
+
   onBackClick() {
     this.setState({
       page: PAGE.MAIN
@@ -62,7 +70,7 @@ class DieselForm extends Component {
         }
         {
           this.state.page === PAGE.MAIN && 
-          <MainView onFormClick={this.onFormClick} onInfoClick={this.onInfoClick} />
+          <MainView onFormClick={this.onFormClick} onInfoClick={this.onInfoClick} onGroupClick={this.onGroupClick} />
         }
         {
           this.state.page === PAGE.FORM && 
@@ -74,9 +82,7 @@ class DieselForm extends Component {
         }
         {
           this.state.page === PAGE.GROUP && 
-          <div>
-            
-          </div>
+          <GroupView onBackClick={this.onBackClick} submitted={22} members={50} />
         }
         {
           this.state.page === PAGE.MAP && 

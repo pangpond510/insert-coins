@@ -38,7 +38,7 @@ const AvgDataTable = ({data}) =>
         return (
           <Row>
             <Cell>{key}</Cell>
-            <Cell>{info.price}</Cell>
+            <Cell>{Math.round(info.price * 100) / 100}</Cell>
           </Row>
         );
       })

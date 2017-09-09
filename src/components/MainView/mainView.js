@@ -52,7 +52,7 @@ const MainView = (props) =>
     <div>
       <Button onClick={props.onFormClick}>FORM</Button>
       <Button onClick={props.onInfoClick}>DIESEL INFOMATION</Button>
-      <Button>GROUP</Button>
+      <Button onClick={props.onGroupClick}>GROUP</Button>
       <Button>OVERVIEW</Button>
     </div>
   </Background>

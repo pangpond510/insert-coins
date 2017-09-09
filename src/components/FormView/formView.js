@@ -62,7 +62,8 @@ class FormView extends Component {
       price: Number(this.state.price),
       application: application,
       amount: Number(this.state.amount),
-      date: new Date(),
+      month: Number(new Date().getMonth()+1),
+      year: Number(new Date().getFullYear()),
     };
     // console.log(parameter);
 

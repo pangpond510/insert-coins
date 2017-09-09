@@ -96,9 +96,9 @@ class RawDataTable extends Component {
             this.state.data.map((data)=>(
               <Row>
                 <Cell>{data.island}</Cell>
-                <Cell>{data.price}</Cell>
+                <Cell>{Math.round(data.price * 100) / 100}</Cell>
                 <Cell>{data.application.join(', ')}</Cell>
-                <Cell>{data.amount}</Cell>
+                <Cell>{Math.round(data.amount * 100) / 100}</Cell>
               </Row>
             ))
           }

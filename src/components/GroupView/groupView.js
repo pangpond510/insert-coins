@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import styled, {css} from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
+import boyDark from '../../img/boy-dark.png'
+import boyLight from '../../img/boy.png'
 
 const Background = styled.div`
   width: 100%;
@@ -23,45 +24,29 @@ const ProgressBar = styled.progress`
   margin-right: 20px;
 `
 
-const People = styled.div`
-  width: 30px;
-  height: 30px;
-  border: 2px solid white;
-  margin: 5px;
-  background: black;
-  ${({ active }) => active && css`
-    background: yellow;
-  `}
+const Pic = styled.img`
+  width: 27px;
+  height: 40px;
+  margin: 10px;
+  cursor: pointer;
 `
 
-class FormView extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      
-    }
-
-  }
-
-  render() {
-    const {submitted, members} = this.props;
-    return (
-      <Background>
-        <Header>
-          <ProgressBar value={submitted} max={members} />
-          <p>{`Members: ${submitted}/${members}`}</p>
-        </Header>
-        <Body>
-          {
-            [...Array(members)].map((x, i) => <People active={i < submitted} />)
-          }
-        </Body> 
-        <br />
-        <button onClick={this.props.onBackClick}>back</button>
-      </Background>
-    );
-  }
-}
+const FormView = ({submitted, members, onBackClick}) =>
+  <Background>
+    <Header>
+      <ProgressBar value={submitted} max={members} />
+      <p>{`Members: ${submitted}/${members}`}</p>
+    </Header>
+    <Body>
+      {
+        [...Array(members)].map((x, i) => {
+          if(i < submitted) return <Pic src={boyLight} alt="submitted" />
+          else return <Pic src={boyDark} alt="not submitted" />
+        })
+      }
+    </Body> 
+    <br />
+    <button onClick={onBackClick}>back</button>
+  </Background>
 
 export default FormView;

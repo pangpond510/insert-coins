@@ -17,7 +17,6 @@ storiesOf("Form", module)
 
 storiesOf("Table", module)
   .add("raw data", () => <RawDataTable island={"island"} />)
-  .add("avg data", () => <AvgDataTable />)
 
 storiesOf("View", module)
   .add("1.login view", () => <LoginView onClick={()=>{console.log("LOGIN!!")}}/>)

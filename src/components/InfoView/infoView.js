@@ -52,9 +52,9 @@ class InfoView extends Component {
       minName: "",
       avg: 0,
       count: 0,
-      apiGet: () => {
+      apiGet: (filter) => {
         // console.log(filter);
-        const api = `http://localhost:3000/api/DieselData`;
+        const api = `http://localhost:3000/api/DieselData?filter=${JSON.stringify(filter)}`;
         return fetch(api, {
           method: 'get'
         });
@@ -63,7 +63,8 @@ class InfoView extends Component {
   }
 
   componentWillMount() {
-    this.state.apiGet()
+    const filter = {where: {month: new Date().getMonth()+1}}
+    this.state.apiGet(filter)
       .then((res) => res.json())
       .then((res) => {
         let avg = {};
@@ -141,7 +142,7 @@ class InfoView extends Component {
             <Card.Grid style={content2}>
               <Text text="Lowest price starts from" size="12px" color={COLOR.primaryDark} />
               <br />
-              <Text text={`${this.state.minPrice} Baht/Litr`} size="23px" color={COLOR.peach} bold />
+              <Text text={`${Math.round(this.state.minPrice * 100) / 100} Baht/Litr`} size="23px" color={COLOR.peach} bold />
               <br />
               <Text text={`at ${this.state.minName}`} size="14px" color={COLOR.lightGrey4} />
               <br />
