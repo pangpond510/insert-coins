@@ -9,6 +9,7 @@ import MainView from "../src/components/MainView";
 import FormView from "../src/components/FormView";
 import InfoView from "../src/components/InfoView";
 import GroupView from "../src/components/GroupView";
+import MapView from "../src/components/MapView"
 
 import "antd/dist/antd.css";
   
@@ -24,3 +25,5 @@ storiesOf("View", module)
   .add("3.form view", () => <FormView />)
   .add("4.diesel info view", () => <InfoView avgPrice={100} lowPrice={60} lowPlace="Phuket" />)
   .add("5.group view", () => <GroupView submitted={22} members={50} />)
+  .add("6.map view", () => <MapView />)
+  

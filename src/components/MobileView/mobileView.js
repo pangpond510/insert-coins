@@ -5,6 +5,7 @@ import MainView from '../MainView';
 import FormView from '../FormView';
 import InfoView from '../InfoView';
 import GroupView from '../GroupView';
+import MapView from '../MapView';
 
 const PAGE = {
   LOGIN: 1,
@@ -27,6 +28,7 @@ class DieselForm extends Component {
     this.onFormClick = this.onFormClick.bind(this);
     this.onInfoClick = this.onInfoClick.bind(this);
     this.onGroupClick = this.onGroupClick.bind(this);
+    this.onMapClick = this.onMapClick.bind(this);
     this.onBackClick = this.onBackClick.bind(this);
   }
 
@@ -55,6 +57,12 @@ class DieselForm extends Component {
     })
   }
 
+  onMapClick() {
+    this.setState({
+      page: PAGE.MAP
+    })
+  }
+
   onBackClick() {
     this.setState({
       page: PAGE.MAIN
@@ -70,7 +78,7 @@ class DieselForm extends Component {
         }
         {
           this.state.page === PAGE.MAIN && 
-          <MainView onFormClick={this.onFormClick} onInfoClick={this.onInfoClick} onGroupClick={this.onGroupClick} />
+          <MainView onFormClick={this.onFormClick} onInfoClick={this.onInfoClick} onGroupClick={this.onGroupClick} onMapClick={this.onMapClick} />
         }
         {
           this.state.page === PAGE.FORM && 
@@ -86,9 +94,7 @@ class DieselForm extends Component {
         }
         {
           this.state.page === PAGE.MAP && 
-          <div>
-            
-          </div>
+          <MapView onBackClick={this.onBackClick} />
         }
       </div>
     );
