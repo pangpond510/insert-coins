@@ -38,10 +38,11 @@ class Header extends Component {
     return (
       <HeaderView>
         <Row type="flex" align="middle">
-          <Col span={8} style={{ textAlign: "left" }}>
-            <Text text="Insert Coins" size="50px" color={COLOR.primaryDark} bold />
+          <Col span={8} offset={1} style={{ textAlign: "left" }}>
+            <Text text="Insert Coins " size="50px" color={COLOR.primaryDark} bold />
+            <Icon type="pay-circle" style={{ fontSize: 40 }} />
           </Col>
-          <Col span={6} offset={6} style={{ textAlign: "right" }}>
+          <Col span={6} offset={5} style={{ textAlign: "right" }}>
             <Icon type="user" style={{ fontSize: 20 }} />
             <Text text={`Project Developer`} size="20px" color={COLOR.primaryDark} bold />
           </Col>
@@ -50,7 +51,12 @@ class Header extends Component {
           </Col>
         </Row>
         <Row>
-          <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+          <Menu
+            onClick={this.handleClick}
+            selectedKeys={[this.state.current]}
+            mode="horizontal"
+            style={{ fontSize: "20px" }}
+          >
             <Menu.Item key={TAB.OVERVIEW}>
               <Icon type="global" />Overview
             </Menu.Item>
