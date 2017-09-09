@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const applicationText = {
   generate: "for generating an electricity power",
@@ -8,7 +9,20 @@ const applicationText = {
   etc: "etc."
 }
 
-class DieselForm extends Component {
+
+const Background = styled.div`
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  background: lightgray;
+`
+
+const Section = styled.div`
+  margin-bottom: 20px;
+  text-align: left;
+`
+
+class FormView extends Component {
   constructor(props) {
     super(props);
 
@@ -72,16 +86,16 @@ class DieselForm extends Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <Background>
+        <Section>
           <h3>island</h3>
           <input value={this.state.island} onChange={this.handleInputChange} name="island" />
-        </div>
-        <div>
+        </Section>
+        <Section>
           <h3>price (Bath/Litr)</h3>
           <input value={this.state.price} onChange={this.handleInputChange} name="price" />
-        </div>
-        <div>
+        </Section>
+        <Section>
           <h3>application</h3>
           <input type="checkbox" onChange={this.handleInputChange} checked={this.state.isGenerate} name="isGenerate" />
           <label for="isGenerate">{applicationText.generate}</label><br />
@@ -91,18 +105,18 @@ class DieselForm extends Component {
           <label for="isSelling">{applicationText.selling}</label><br />
           <input type="checkbox" onChange={this.handleInputChange} checked={this.state.isEtc} name="isEtc" />
           <label for="isEtc">{applicationText.etc}</label><br />
-        </div>
-        <div>
+        </Section>
+        <Section>
           <h3>amount of diesel (Litr/Month)</h3>
           <input value={this.state.amount} onChange={this.handleInputChange} name="amount" />
-        </div>
-        <div>
-          <br /><br />
+        </Section>
+        <Section>
           <button onClick={() => this.sentData()}>Submit</button>
-        </div>
-      </div>
+        </Section>
+        <button onClick={this.props.onBackClick}>back</button>
+      </Background>
     );
   }
 }
 
-export default DieselForm;
+export default FormView;

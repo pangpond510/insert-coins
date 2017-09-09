@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Footer from "./components/Footer";
-import MobileContentView from "./components/MobileContentView";
+import MobileView from "./components/MobileView";
 import "./App.css";
 
 class App extends Component {
@@ -52,8 +52,7 @@ class App extends Component {
         </p> */}
         {this.state.onMobile && (
           <div>
-            <MobileContentView avgPrice="30" lowPrice="28" lowPlace="somewhere" />
-            <Footer />
+            <MobileView />
           </div>
         )}
       </div>

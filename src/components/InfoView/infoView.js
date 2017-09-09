@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+
 import { Row, Card } from "antd";
 import Text from "../Text";
+import AvgTable from "../avgDataTable"
 
 import { COLOR } from "../../styles/variables";
 
-const MobileContentViewDefaultProps = {};
+const InfoViewDefaultProps = {};
 
 const MobileCard = styled(Card)`
   box-shadow: 0 1.5px 9px rgba(0, 0, 0, 0.2);
@@ -40,9 +42,9 @@ const content2 = {
 
 const date = new Date();
 
-class MobileContentView extends Component {
+class InfoView extends Component {
   render() {
-    const { avgPrice, lowPrice, lowPlace } = this.props;
+    const { onBackClick, avgPrice, lowPrice, lowPlace } = this.props;
     return (
       <div>
         <Row type="flex" justify="center" style={{ padding: "20px 5px 0px 5px" }}>
@@ -51,7 +53,7 @@ class MobileContentView extends Component {
               <Text text="Average Price" size="27px" color={COLOR.green2} bold />
               <br />
               <Text
-                text={`at ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}
+                text={`at ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`}
                 size="14px"
                 color={COLOR.lightGrey4}
               />
@@ -69,7 +71,7 @@ class MobileContentView extends Component {
               <Text text="Lowest Price" size="27px" color={COLOR.facebook} bold />
               <br />
               <Text
-                text={`at ${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}
+                text={`at ${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`}
                 size="14px"
                 color={COLOR.lightGrey4}
               />
@@ -84,11 +86,15 @@ class MobileContentView extends Component {
             </Card.Grid>
           </MobileCard>
         </Row>
+        <Row type="flex" justify="center" style={{ padding: "20px 20px 20px 20px" }}>
+          <AvgTable />
+        </Row>
+        <button onClick={onBackClick}>back</button>
       </div>
     );
   }
 }
 
-MobileContentView.defaultProps = MobileContentViewDefaultProps;
+InfoView.defaultProps = InfoViewDefaultProps;
 
-export default MobileContentView;
+export default InfoView;
