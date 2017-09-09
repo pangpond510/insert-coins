@@ -2,19 +2,29 @@ import React, { Component } from "react";
 import Header from "./components/Header";
 import MobileView from "./components/MobileView";
 import Overview from "./components/Overview";
-import Parts from "./components/Parts";
+import IndivView from "./components/IndivView";
+import CompareView from "./components/CompareView";
 import "./App.css";
+
+const TAB = {
+  OVERVIEW: 'overview',
+  INDIVIDUAL: 'individual',
+  COMPARE: 'compare',
+}
 
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       onMobile: false,
-      current: "Parts"
+      current: TAB.OVERVIEW
     };
+
     this.updateDevice = this.updateDevice.bind(this);
     this.updateTopic = this.updateTopic.bind(this);
   }
+
   componentWillMount() {
     this.updateDevice();
     window.addEventListener("resize", this.updateDevice);
@@ -68,7 +78,7 @@ class App extends Component {
         {!this.state.onMobile && (
           <div>
             <Header onTopicChange={this.updateTopic} />
-            {this.state.current === "Overview" && (
+            {this.state.current === TAB.OVERVIEW && (
               <div>
                 <Overview
                   avgPrice="30"
@@ -79,9 +89,14 @@ class App extends Component {
                 />
               </div>
             )}
-            {this.state.current === "Parts" && (
+            {this.state.current === TAB.INDIVIDUAL && (
               <div>
-                <Parts avgPrice="30" avgVolume="32" />
+                <IndivView avgPrice="30" avgVolume="32" />
+              </div>
+            )}
+            {this.state.current === TAB.COMPARE && (
+              <div>
+                <CompareView />>
               </div>
             )}
           </div>

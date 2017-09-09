@@ -6,6 +6,12 @@ import Button from "../Button";
 
 import { COLOR } from "../../styles/variables";
 
+const TAB = {
+  OVERVIEW: 'overview',
+  INDIVIDUAL: 'individual',
+  COMPARE: 'compare',
+}
+
 const HeaderView = styled.div`
   background-color: white;
   padding: 10px;
@@ -15,17 +21,19 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: "Overview"
+      current: TAB.OVERVIEW
     };
     this.handleClick = this.handleClick.bind(this);
   }
+
   handleClick(e) {
-    console.log("click ", e);
+    // console.log("click ", e.key);
     this.setState({
       current: e.key
     });
     this.props.onTopicChange(e.key);
   }
+
   render() {
     return (
       <HeaderView>
@@ -43,13 +51,13 @@ class Header extends Component {
         </Row>
         <Row>
           <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-            <Menu.Item key="Overview">
+            <Menu.Item key={TAB.OVERVIEW}>
               <Icon type="global" />Overview
             </Menu.Item>
-            <Menu.Item key="Parts">
+            <Menu.Item key={TAB.INDIVIDUAL}>
               <Icon type="appstore" />Parts
             </Menu.Item>
-            <Menu.Item key="Compared">
+            <Menu.Item key={TAB.COMPARE}>
               <Icon type="copy" />Compared
             </Menu.Item>
           </Menu>
