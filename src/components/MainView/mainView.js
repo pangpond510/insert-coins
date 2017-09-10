@@ -16,13 +16,14 @@ const Notice = styled.div`
   display: flex;
   background-color: #ef6453;
   padding: 20px;
+  bottom: 0;
 `;
 
 const ButtonRow = styled(Row)`padding: 15px 0px;`;
 const MainButton = styled(Button)`width: 225px;`;
 
 const MainView = props => (
-  <div>
+  <div style={{position: "relative"}}>
     <UserSection type="flex" align="center">
       <Icon type="user" style={{ fontSize: 70, color: "white" }} />
       <Text text="username" size="30px" color={COLOR.white} bold style={{ lineHeight: "70px" }} />
