@@ -11,6 +11,12 @@ const UserSection = styled(Row)`
   padding: 10px 0px;
 `;
 
+const Notice = styled.div`
+  display: flex;
+  background-color: #EF6453;
+  padding: 20px;
+`
+
 const ButtonRow = styled(Row)`padding: 15px 0px;`;
 const MainButton = styled(Button)`width: 225px;`;
 
@@ -21,19 +27,24 @@ const MainView = props => (
       <Text text="username" size="30px" color={COLOR.white} bold style={{ lineHeight: "70px" }} />
     </UserSection>
     <br />
+    <ButtonRow>
+      <MainButton label="  SUBMIT FORM" icon="save" onClick={props.onFormClick} />
+    </ButtonRow>
+    <ButtonRow>
+      <MainButton label="  DIESEL INFORMATION" icon="file-text" onClick={props.onInfoClick} />
+    </ButtonRow>
+    <ButtonRow>
+      <MainButton label="  COMMUNITY GROUP" icon="team" onClick={props.onGroupClick} />
+    </ButtonRow>
+    <ButtonRow>
+      <MainButton label="  LOOK AROUND" icon="global" onClick={props.onMapClick} />
+    </ButtonRow>
     <br />
-    <ButtonRow>
-      <MainButton label="FORM" icon="save" onClick={props.onFormClick} />
-    </ButtonRow>
-    <ButtonRow>
-      <MainButton label="DIESEL INFOMATION" icon="file-text" onClick={props.onInfoClick} />
-    </ButtonRow>
-    <ButtonRow>
-      <MainButton label="GROUP" icon="team" onClick={props.onGroupClick} />
-    </ButtonRow>
-    <ButtonRow>
-      <MainButton label="OVERVIEW" onClick={props.onMapClick} />
-    </ButtonRow>
+    <br />
+    <Notice>
+      <Icon type="bulb" style={{ fontSize: "65px", color: "#f2f2f2" }}/>
+      <Text text=" Please submit the diesel information" size="23px" color={COLOR.body} bold  />
+    </Notice>
   </div>
 );
 
