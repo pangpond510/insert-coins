@@ -129,18 +129,18 @@ class CompareView extends Component {
           <SearchSection>
             {
               [...Array(this.state.searchBox)].map((x,i) => (
-                <Input name={i} value={this.state.searchText[i]} onChange={this.handleInputChange} placeholder={`island ${i+1} name...`} style={{ width: "70vw", height: 50, fontSize: 25, marginBottom: 20}}/>
+                <Input name={i} key = {i} value={this.state.searchText[i]} onChange={this.handleInputChange} placeholder={`island ${i+1} name...`} style={{ width: "70vw", height: 50, fontSize: 25, marginBottom: 20}}/>
               ))
             }
             <Row>
               <Col span={12}>
                 <Row type="flex" justify="center">
-                  <Button label="Compare" icon="copy" size="20" onClick={this.handleCompareClick} />
+                  <Button label=" Compare" icon="copy" size="20" onClick={this.handleCompareClick} />
                 </Row>
               </Col>
               <Col span={11}>
                 <Row type="flex" justify="center">
-                  <Button label="Add more island" icon="plus-circle" size="20" onClick={this.handleAddClick} />
+                  <Button label=" Add more island" icon="plus-circle" size="20" onClick={this.handleAddClick} />
                 </Row>
               </Col>
               </Row>
