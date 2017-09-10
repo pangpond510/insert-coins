@@ -198,7 +198,7 @@ class IndivView extends Component {
                   </InfoCard>
                 </Row>
               </Col>
-              <Col span={13} offset={1}>
+              <Col span={12} offset={1}>
                 <Text text={this.state.island} size="40px" color={COLOR.primaryDark} />
                 <Row justify="center">
                   <RawDataTable data={this.state.data} />
