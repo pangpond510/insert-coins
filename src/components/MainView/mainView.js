@@ -12,10 +12,10 @@ const UserSection = styled(Row)`
 `;
 
 const Notice = styled.div`
-  height: 21vh;
   display: flex;
   background-color: #ef6453;
   padding: 20px;
+  position: fixed;
   bottom: 0;
 `;
 
@@ -23,7 +23,7 @@ const ButtonRow = styled(Row)`padding: 15px 0px;`;
 const MainButton = styled(Button)`width: 225px;`;
 
 const MainView = props => (
-  <div style={{position: "relative"}}>
+  <div>
     <UserSection type="flex" align="center">
       <Icon type="user" style={{ fontSize: 70, color: "white" }} />
       <Text text="username" size="30px" color={COLOR.white} bold style={{ lineHeight: "70px" }} />
