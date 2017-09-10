@@ -15,11 +15,9 @@ const columns = [
 ];
 
 const AvgDataTable = ({ data }) => {
-  console.log(data);
   const TableData = Object.keys(data).map((e, i) => {
-    return { key: i, name: e, price: Math.round(data[e].price *100)/100 };
+    return { key: i, name: e, price: Math.round(data[e].price * 100) / 100 };
   });
-  console.log(TableData);
   return <Table columns={columns} dataSource={TableData} pagination={false} />;
 };
 
