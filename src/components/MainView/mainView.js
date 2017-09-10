@@ -12,10 +12,11 @@ const UserSection = styled(Row)`
 `;
 
 const Notice = styled.div`
+  height: 21vh;
   display: flex;
-  background-color: #EF6453;
+  background-color: #ef6453;
   padding: 20px;
-`
+`;
 
 const ButtonRow = styled(Row)`padding: 15px 0px;`;
 const MainButton = styled(Button)`width: 225px;`;
@@ -42,8 +43,8 @@ const MainView = props => (
     <br />
     <br />
     <Notice>
-      <Icon type="bulb" style={{ fontSize: "65px", color: "#f2f2f2" }}/>
-      <Text text=" Please submit the diesel information" size="23px" color={COLOR.body} bold  />
+      <Icon type="bulb" style={{ fontSize: "65px", color: "#f2f2f2" }} />
+      <Text text=" Please submit the diesel information" size="23px" color={COLOR.body} bold />
     </Notice>
   </div>
 );
