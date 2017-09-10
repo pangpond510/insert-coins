@@ -129,7 +129,7 @@ class InfoView extends Component {
               <Text text="Diesel price in thailand" size="12px" color={COLOR.primaryDark} />
               <br />
               <Text
-                text={`${Math.round(this.state.avg * 100) / 100} Baht/Litr`}
+                text={`${Math.round(this.state.avg * 100) / 100} Bahts/Litr`}
                 size="23px"
                 color={COLOR.peach}
                 bold
@@ -152,7 +152,7 @@ class InfoView extends Component {
               <Text text="Lowest price starts from" size="12px" color={COLOR.primaryDark} />
               <br />
               <Text
-                text={`${Math.round(this.state.minPrice * 100) / 100} Baht/Litr`}
+                text={`${Math.round(this.state.minPrice * 100) / 100} Bahts/Litr`}
                 size="23px"
                 color={COLOR.peach}
                 bold

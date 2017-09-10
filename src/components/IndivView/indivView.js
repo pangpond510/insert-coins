@@ -162,7 +162,7 @@ class IndivView extends Component {
                       />
                       <br />
                       <Text
-                        text={`${Math.round(this.state.avgPrice * 100) / 100} Baht/Litr`}
+                        text={`${Math.round(this.state.avgPrice * 100) / 100} Bahts/Litr`}
                         size="20px"
                         color={COLOR.peach}
                         bold

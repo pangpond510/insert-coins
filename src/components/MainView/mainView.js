@@ -36,7 +36,7 @@ const MainView = props => (
       <MainButton label="  DIESEL INFORMATION" icon="file-text" onClick={props.onInfoClick} />
     </ButtonRow>
     <ButtonRow>
-      <MainButton label="  COMMUNITY GROUP" icon="team" onClick={props.onGroupClick} />
+      <MainButton label="  MY GROUP" icon="team" onClick={props.onGroupClick} />
     </ButtonRow>
     <ButtonRow>
       <MainButton label="  LOOK AROUND" icon="global" onClick={props.onMapClick} />

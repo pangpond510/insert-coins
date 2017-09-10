@@ -8,7 +8,7 @@ import { COLOR } from "../../styles/variables";
 
 const applicationText = {
   generate: "for generating an electricity power",
-  vehicle: "for vehicle or machine",
+  vehicle: "for vehicles or machines",
   selling: "for selling",
   etc: "etc."
 };
@@ -105,7 +105,7 @@ class FormView extends Component {
             />
           </Section>
           <Section>
-            <Text text="price (Bath/Litr) : " size="18px" color={COLOR.primaryDark} />
+            <Text text="price (Bahts/Litr) : " size="18px" color={COLOR.primaryDark} />
             <Input
               value={this.state.price}
               onChange={this.handleInputChange}

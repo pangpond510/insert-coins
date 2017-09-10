@@ -67,7 +67,7 @@ class Overview extends Component {
                 <Card.Grid style={content1}>
                   <Text text="Diesel price in thailand" size="12px" color={COLOR.primaryDark} />
                   <br />
-                  <Text text={`${avgPrice} Baht/Litr`} size="25px" color={COLOR.peach} bold />
+                  <Text text={`${avgPrice} Bahts/Litr`} size="25px" color={COLOR.peach} bold />
                 </Card.Grid>
               </InfoCard>
             </Row>
@@ -87,7 +87,7 @@ class Overview extends Component {
                 <Card.Grid style={content2}>
                   <Text text="Lowest price starts from" size="12px" color={COLOR.primaryDark} />
                   <br />
-                  <Text text={`${lowPrice} Baht/Litr`} size="25px" color={COLOR.peach} bold />
+                  <Text text={`${lowPrice} Bahts/Litr`} size="25px" color={COLOR.peach} bold />
                   <br />
                   <Text text={`at ${lowPlace}`} size="14px" color={COLOR.lightGrey4} />
                   <br />
@@ -108,9 +108,9 @@ class Overview extends Component {
                   />
                 </Card.Grid>
                 <Card.Grid style={content2}>
-                  <Text text="Highest price reach to" size="12px" color={COLOR.primaryDark} />
+                  <Text text="Highest price reaches to" size="12px" color={COLOR.primaryDark} />
                   <br />
-                  <Text text={`${highPrice} Baht/Litr`} size="25px" color={COLOR.peach} bold />
+                  <Text text={`${highPrice} Bahts/Litr`} size="25px" color={COLOR.peach} bold />
                   <br />
                   <Text text={`at ${highPlace}`} size="14px" color={COLOR.lightGrey4} />
                   <br />
