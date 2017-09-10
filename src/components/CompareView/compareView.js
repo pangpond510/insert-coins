@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import {Input, Row, Col} from "antd"
+import { Row, Col, Card, Input } from "antd";
 import Button from "../Button";
+import compareGraph from "../../img/Compare1.png"
+import Text from "../Text";
+
+import { COLOR } from "../../styles/variables";
 
 const Container = styled.div`
   background-color: white;
@@ -10,11 +14,34 @@ const Container = styled.div`
 `;
 
 const SearchSection = styled.div`
-width: fit-content;
-margin: 20px auto 40px;
-display: block;
-vertical-align: middle;
+  width: fit-content;
+  margin: 20px auto 40px;
+  display: block;
+  vertical-align: middle;
 `
+const InfoCard = styled(Card)`
+  box-shadow: 0 1.5px 9px rgba(0, 0, 0, 0.2);
+  border-color: transparent;
+`;
+
+const header = {
+  width: "40%",
+  height: "120px",
+  padding: "10px",
+  textAlign: "center",
+  verticalAlign: "middle"
+};
+
+const content1 = {
+  width: "60%",
+  height: "120px",
+  padding: "10px",
+  textAlign: "center",
+  lineHeight: "45px",
+  verticalAlign: "middle"
+};
+
+const date = new Date();
 
 class CompareView extends Component {
   constructor(props) {
@@ -24,6 +51,14 @@ class CompareView extends Component {
       isSearch: false,
       searchBox: 2,
       searchText: {},
+      avgText: {},
+      apiGet: filter => {
+        // console.log(filter);
+        const api = `http://localhost:3000/api/DieselData?filter=${JSON.stringify(filter)}`;
+        return fetch(api, {
+          method: "get"
+        });
+      }
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -47,7 +82,35 @@ class CompareView extends Component {
     this.setState({
       isSearch: true,
     })
-    console.log(this.state.searchText);
+    for (let key in this.state.searchText) {
+      if (this.state.searchText.hasOwnProperty(key)) {
+        const island = this.state.searchText[key];
+        const filter = {
+          where: { island: island }
+        };
+    
+        this.state
+          .apiGet(filter)
+          .then(res => res.json())
+          .then(res => {
+            let sumPrice = 0;
+            let count = 0;
+            for (let i in res) {
+              sumPrice += res[i].price;
+              count++;
+            }
+            const tmp = this.state.avgText;
+            tmp[key] = isNaN(sumPrice / count) ? 0 : sumPrice / count
+            this.setState({
+              avgText: tmp,
+            })
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        }
+      }
+    console.log(this.state);
   }
 
   handleAddClick() {
@@ -84,7 +147,48 @@ class CompareView extends Component {
           </SearchSection>
         }  
         {
-          this.state.isSearch && <div />
+          this.state.isSearch && 
+          <div>
+            <br />
+            <br />
+            <Col span={13} offset={1}>
+              <img src={compareGraph} alt="Compare Graph" width="100%" height="auto" />
+            </Col>
+            <Col span={9}>
+              {
+                Object.keys(this.state.searchText).map((key) => (
+                  <Row type="flex" justify="center" style={{ marginBottom: "20px" }}>
+                    <InfoCard style={{ width: "350" }}>
+                      <Card.Grid style={header}>
+                        <Text text="Average Price" size="24px" color={COLOR.green2} bold />
+                        <br />
+                        <Text
+                          text={`at ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`}
+                          size="14px"
+                          color={COLOR.lightGrey4}
+                        />
+                      </Card.Grid>
+                      <Card.Grid style={content1}>
+                        <Text
+                          text={`Diesel price in ${this.state.searchText[key]}`}
+                          size="12px"
+                          color={COLOR.primaryDark}
+                        />
+                        <br />
+                        <Text
+                          text={`${Math.round(this.state.avgText[key] * 100) / 100} Baht/Litr`}
+                          size="20px"
+                          color={COLOR.peach}
+                          bold
+                        />
+                      </Card.Grid>
+                    </InfoCard>
+                  </Row>
+                ))
+              }
+            </Col>
+            
+          </div>
         }
       </Container>
     );
